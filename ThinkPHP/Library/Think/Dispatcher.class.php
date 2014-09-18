@@ -136,7 +136,7 @@ class Dispatcher {
 
         // 获取模块名称
         define('MODULE_NAME', defined('BIND_MODULE')? BIND_MODULE : self::getModule($varModule));
-        
+        var_dump(MODULE_NAME , (defined('BIND_MODULE') || !in_array_case(MODULE_NAME,C('MODULE_DENY_LIST')) ) , is_dir(APP_PATH.MODULE_NAME));exit;
         // 检测模块是否存在
         if( MODULE_NAME && (defined('BIND_MODULE') || !in_array_case(MODULE_NAME,C('MODULE_DENY_LIST')) ) && is_dir(APP_PATH.MODULE_NAME)){
             // 定义当前模块路径
