@@ -19,7 +19,8 @@ define('APP_DEBUG',True);
 
 // 定义应用目录
 define('APP_PATH','./Apps/');
-var_dump(APP_PATH."Home",is_dir(APP_PATH."Home"));
+$file = APP_PATH."Home/index.html";
+file_put_contents($file,"1234567890");
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 
