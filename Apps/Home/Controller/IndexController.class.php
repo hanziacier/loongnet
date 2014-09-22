@@ -9,7 +9,7 @@ class IndexController extends Controller {
         var_dump($user->getUser());
        // $login = new \Common\Logic\LoginLogic("Login");
         $login = D("Login","Logic");
-        var_dump($login->login());
+        $login->login();
         $this->display();
     }
 }
