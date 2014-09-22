@@ -4,9 +4,10 @@ use Think\Controller;
 class IndexController extends Controller {
 
     public function index(){
-        $user = D("User");
-        var_dump($user);
-        var_dump(D("Login","Logic")->login());
+        $user = new \Common\Model\UserModel();
+        var_dump($user->getUser());
+        $login = new \Common\Logic\LoginLogic();
+        var_dump($login->login());
         $this->display();
     }
 }
