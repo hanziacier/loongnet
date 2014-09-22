@@ -11,4 +11,8 @@ namespace Common\Model;
 use Think\Model;
 class UserModel extends Model {
     protected $tablePrefix = '';
+    public  function getUser(){
+        $user = array("id"=>"1");
+        return $user;
+    }
 } 
