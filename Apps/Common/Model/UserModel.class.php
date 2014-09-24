@@ -15,4 +15,8 @@ class UserModel extends Model {
         $user = array("id"=>"1");
         return $user;
     }
+    public function getUserByName($name){
+        $where = array("name"=>$name);
+        return $this->where($where)->find();
+    }
 } 
