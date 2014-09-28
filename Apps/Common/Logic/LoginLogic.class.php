@@ -43,7 +43,7 @@ class LoginLogic extends Model {
             return false;
         }
         $model = new UM();
-        $user = $model->getTableName($data['name']);
+        $user = $model->getUserByName($data['name']);
         if ($user && $user['id']) {
             self::$logicError = "用户名已经被占用";
             return false;
