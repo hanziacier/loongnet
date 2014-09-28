@@ -17,7 +17,7 @@ class UserController extends BaseController
     function __construct()
     {
         parent::__construct();
-        $this->$enable_verify = 0;
+        $this->enable_verify = 0;
     }
 
     public function login()
