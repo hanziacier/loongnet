@@ -49,6 +49,7 @@ class LoginLogic extends Model {
             return false;
         }
         $data['password'] = md5($data['password']);
+        var_dump($data);
         if ($model->create($data)) {
             return $model->add();
         } else {
