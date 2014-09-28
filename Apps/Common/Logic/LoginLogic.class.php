@@ -14,6 +14,7 @@ use \Common\Model\UserModel as UM;
 class LoginLogic extends Model {
     const SECURITYKEY = "IHanke!@QW";
     const SECURITYSTEP = "~1@3$5~";
+    const EXPIRE = 1800;
     protected static $logicError;
     public static function login($user_name,$password){
         $model = new UM();
@@ -66,8 +67,9 @@ class LoginLogic extends Model {
         return false;
     }
 
-    public static function createAccessToken(array $user, int $expire = 1800, string $securityKey = self::SECURITYKEY)
+    public static function createAccessToken(array $user, string $securityKey = self::SECURITYKEY)
     {
+        $expire = time() + self::EXPIRE;
         return self::crypt($user['id'] .self::SECURITYSTEP.
             $user['name'] .self::SECURITYSTEP.
             $user['mobile'] .self::SECURITYSTEP.
