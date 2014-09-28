@@ -9,21 +9,20 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use \Common\Logic\LoginLogic as LL;
 
 class UserController extends Controller
 {
-    var $logic;
 
     function __construct()
     {
         parent::__construct();
-        $this->logic = new \Common\Logic\LoginLogic();
+
     }
 
     public function register()
     {
         $data = array_merge(I("get."), I("post."));
-    use \Common\Logic\LoginLogic as LL;
 
         if ($id = LL::register($data)) {
             echo $id;
