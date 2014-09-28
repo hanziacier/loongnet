@@ -27,15 +27,16 @@ class BaseController extends Controller
      */
     protected function  _initialize()
     {
+        $post = I('post.');
         if ($this->enable_verify) {
-            $post = I('post.');
+
             $this->ckSysParams($post);
         }
         $path = ucfirst(CONTROLLER_NAME) . "_" . ACTION_NAME;
         //var_dump($path);
         if (!in_array($path, $this->noLoginAction)) { //需要验证登陆
 
-            if ($login = LL::isLogin($post['access_token'])) {
+            if ($login = LL::isLogin($post['ucode'])) {
 
                 if (isset($post['debug']) && $post['debug']) {
                     $this->jsonReturn(1, $login, '你的登录用户数据');

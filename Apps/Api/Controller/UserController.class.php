@@ -25,7 +25,9 @@ class UserController extends BaseController
         $data = array_merge(I("get."), I("post."));
         $result = LL::login($data['name'], $data['password']);
         if ($result) {
-            $this->jsonReturn(1, LL::parseAccessToken($result), "登录成功");
+            $return = LL::parseAccessToken($result);
+            $return['ucode'] = $result;
+            $this->jsonReturn(1, $return, "登录成功");
         } else {
             $this->jsonReturn(0, '', LL::getLogicError());
         }
