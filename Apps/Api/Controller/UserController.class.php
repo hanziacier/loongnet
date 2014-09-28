@@ -11,7 +11,7 @@ namespace Api\Controller;
 use Think\Controller;
 use \Common\Logic\LoginLogic as LL;
 
-class UserController extends BaseControllerController
+class UserController extends BaseController
 {
 
     function __construct()
