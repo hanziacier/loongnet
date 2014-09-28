@@ -45,6 +45,7 @@ class LoginLogic extends Model {
             self::$logicError = "用户名已经被占用";
             return false;
         }
+        $data['password'] = md5($data['password']);
         if ($model->create($data)) {
             return $model->add();
         } else {
