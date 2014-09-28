@@ -9,12 +9,14 @@
 namespace Common\Logic;
 
 use Think\Model;
+use \Common\Model\UserModel as UM;
+
 class LoginLogic extends Model {
     const SECURITYKEY = "IHanke!@QW";
     const SECURITYSTEP = "~1@3$5~";
     protected static $logicError;
     public static function login($user_name,$password){
-        $model = new \Common\Model\UserModel();
+        $model = new UM();
         $user = $model->getUserByName($user_name);
         $access_token = false;
         if($user['id']){
@@ -39,7 +41,7 @@ class LoginLogic extends Model {
             self::$logicError = "注册数据不完整";
             return false;
         }
-        $model = new \Common\Model\UserModel();
+        $model = new UM();
         $user = $model->getTableName($data['name']);
         if ($user && $user['id']) {
             self::$logicError = "用户名已经被占用";
@@ -64,7 +66,7 @@ class LoginLogic extends Model {
         return false;
     }
 
-    public static function createAccessToken(array $user, int $expire, string $securityKey = self::SECURITYKEY)
+    public static function createAccessToken(array $user, int $expire = 1800, string $securityKey = self::SECURITYKEY)
     {
         return self::crypt($user['id'] .self::SECURITYSTEP.
             $user['name'] .self::SECURITYSTEP.
