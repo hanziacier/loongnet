@@ -67,7 +67,7 @@ class LoginLogic extends Model {
         return false;
     }
 
-    public static function createAccessToken(array $user, string $securityKey = self::SECURITYKEY)
+    public static function createAccessToken(array $user)
     {
         $expire = time() + self::EXPIRE;
         return self::crypt($user['id'] .self::SECURITYSTEP.
@@ -76,7 +76,9 @@ class LoginLogic extends Model {
             $expire,
             $securityKey);
     }
-    public static function parseAccessToken(string $access_token,$securityKey=self::SECURITYKEY){
+
+    public static function parseAccessToken(string $access_token)
+    {
         $access_token = self::crypt($access_token, $securityKey, 'decode');
         $user = array();
         list($user['id'],
