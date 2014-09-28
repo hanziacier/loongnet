@@ -63,7 +63,9 @@ class LoginLogic extends Model {
         if($user['id'] && $user['name'] && time() < $user['expire']) return $user;
         return false;
     }
-    public static function createAccessToken(Model $user,int $expire,string $securityKey=self::SECURITYKEY){
+
+    public static function createAccessToken(array $user, int $expire, string $securityKey = self::SECURITYKEY)
+    {
         return self::crypt($user['id'] .self::SECURITYSTEP.
             $user['name'] .self::SECURITYSTEP.
             $user['mobile'] .self::SECURITYSTEP.
