@@ -31,7 +31,7 @@ class BaseController extends Controller
             $post = I('post.');
             $this->ckSysParams($post);
         }
-        $path = ucfirst(API_MODULE_NAME) . "_" . API_ACTION_NAME;
+        $path = ucfirst(MODULE_NAME) . "_" . ACTION_NAME;
         //var_dump($path);
         if (!in_array($path, $this->noLoginAction)) { //需要验证登陆
 
