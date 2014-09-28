@@ -31,7 +31,7 @@ class BaseController extends Controller
             $post = I('post.');
             $this->ckSysParams($post);
         }
-        $path = ucfirst(MODULE_NAME) . "_" . ACTION_NAME;
+        $path = ucfirst(CONTROLLER_NAME) . "_" . ACTION_NAME;
         //var_dump($path);
         if (!in_array($path, $this->noLoginAction)) { //需要验证登陆
 
@@ -42,7 +42,7 @@ class BaseController extends Controller
                 }
                 return true;
             } else {
-                $this->jsonReturn(0, '', '你登录后才能调用此方法');
+                $this->jsonReturn(0, '', '你登录后才能调用此方法' . $path);
             }
 
         }
