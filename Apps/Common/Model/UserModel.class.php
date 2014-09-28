@@ -36,8 +36,14 @@ class UserModel extends Model {
         array('password', 'require', '请填用户密码', Model::MUST_VALIDATE,"",Model::MODEL_INSERT), //默认情况下用正则进行验证
         array('mobile', 'number', '请填用户手机号', Model::VALUE_VALIDATE), //默认情况下用正则进行验证
         array('status', 'number', '', Model::VALUE_VALIDATE,self::STATUS_INIT,Model::MODEL_BOTH), //默认情况下用正则进行验证
+        array('add_time', 'number', '', Model::VALUE_VALIDATE, '', Model::MODEL_BOTH), //默认情况下用正则进行验证
 
     );
+    protected $_auto = array(
+        array('status', self::STATUS_INIT), // 新增的时候把status字段设置为1
+        array('add_time', 'time', Model::MODEL_INSERT, 'function'), // 对update_time字段在更新的时候写入当前时间戳
+    );
+
     public  function getUser($id=0){
         return $this->find($id);
     }
