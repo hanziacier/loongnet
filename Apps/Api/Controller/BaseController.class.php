@@ -33,7 +33,7 @@ class BaseController extends Controller
         }
         $path = ucfirst(API_MODULE_NAME) . "_" . API_ACTION_NAME;
         //var_dump($path);
-        if (!in_array($path, self::$noLoginAction)) { //需要验证登陆
+        if (!in_array($path, $this->noLoginAction)) { //需要验证登陆
 
             if ($login = LL::isLogin($post['access_token'])) {
 
