@@ -39,8 +39,15 @@ class UserModel extends Model {
     );
     protected $_auto = array(
         array('status', self::STATUS_INIT), // 新增的时候把status字段设置为1
-        array('add_time', 'date="Y-m-d H:i:s"', Model::MODEL_INSERT, 'function'), // 对update_time字段在更新的时候写入当前时间戳
+        array('add_time', 'getDateTime', Model::MODEL_INSERT, 'callback'), // 对update_time字段在更新的时候写入当前时间戳
     );
+
+    protected function getDateTime()
+    {
+
+        return date("Y-m-d h:i:s");
+
+    }
 
     public  function getUser($id=0){
         return $this->find($id);
