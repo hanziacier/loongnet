@@ -29,6 +29,31 @@ class LoginLogic extends Model {
 
         return $access_token;
     }
+
+    public static function register($data)
+    {
+        if (empty($data['name']) ||
+            empty($data['password']) ||
+            empty($data['mobile'])
+        ) {
+            self::$logicError = "注册数据不完整";
+            return false;
+        }
+        $model = new \Common\Model\UserModel();
+        $user = $model->getTableName($data['name']);
+        if ($user && $user['id']) {
+            self::$logicError = "用户名已经被占用";
+            return false;
+        }
+        if ($model->create($data)) {
+            return $model->add();
+        } else {
+            self::$logicError = $model->getError();
+            return false;
+        }
+
+    }
+
     public static function getLogicError(){
         return self::$logicError;
     }
