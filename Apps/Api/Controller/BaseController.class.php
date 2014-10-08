@@ -14,7 +14,7 @@ use \Common\Logic\LoginLogic as LL;
 class BaseController extends Controller
 {
     public $enable_verify = 0; //数据通信安全验证 ，0：暂时不开 1：生效
-    protected $noLoginAction = array('User_login');
+    protected $noLoginAction = array('User_login', 'QQ_loginBack');
 
     function __construct()
     {
