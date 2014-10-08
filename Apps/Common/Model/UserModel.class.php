@@ -14,9 +14,14 @@ class UserModel extends Model
 {
 
     const STATUS_INIT = 0; //未审核
-    const STATUS_COMMON = 2; //审核通过
-    const STATUS_DELETE = -4; //删除
-    const STATUS_REJECT = -2; //审核驳回
+    const STATUS_COMMON = 4; //审核通过
+    const STATUS_DELETE = -8; //删除
+    const STATUS_REJECT = -4; //审核驳回
+
+    const TYPE_SELF = 0; //用户来源为自主用户
+    const TYPE_QQ = 2; //
+    const TYPE_WEIXIN = 4; //
+    CONST TYPE_SINA_WEIBO = 8; //
     protected $tablePrefix = '';
 
     //array(验证字段,验证规则,错误提示,[验证条件,附加规则,验证时间])
@@ -41,6 +46,8 @@ class UserModel extends Model
     );
     protected $_auto = array(
         array('status', self::STATUS_INIT), // 新增的时候把status字段设置为1
+        array('type', self::TYPE_SELF), // 新增的时候把TYPE字段设置为0
+        array('pid', 0), // 新增的时候把TYPE字段设置为0
         array('add_time', 'getDateTime', Model::MODEL_INSERT, 'callback'), // 对update_time字段在更新的时候写入当前时间戳
     );
 
