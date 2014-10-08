@@ -22,7 +22,7 @@ class QQController extends BaseController
 
     public function loginBack()
     {
-        echo "";
+        echo '<meta property="qc:admins" content="3474706167675477676654" />';
     }
 
 
