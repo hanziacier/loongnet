@@ -89,7 +89,7 @@ class Oauth
 
         $params = array();
         parse_str($response, $params);
-
+        var_dump("qq_callback:",$params);
         $this->recorder->write("access_token", $params["access_token"]);
         return $params["access_token"];
 
