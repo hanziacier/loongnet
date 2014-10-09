@@ -30,11 +30,7 @@ class QQController extends Controller
 
     public function loginBack()
     {
-
-        $_GET['code'] = I('get.code');
-        $_GET['state'] = I('get.state');
         import("QC");
-
         $Oauth = new \QC();
         echo "qq_callback:accessToken ";
         if ($accessToken = $Oauth->qq_callback() && $openId = $Oauth->get_openid()) {
@@ -44,7 +40,9 @@ class QQController extends Controller
             if ($ret['ret'] == 0) { //成功登录
                 LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ);
                 $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
-                var_dump($selfAccessToken);
+                var_dump('$selfAccessToken:',$selfAccessToken);
+            }else{
+                var_dump($ret);
             }
         }
 
