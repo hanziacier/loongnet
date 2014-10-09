@@ -11,7 +11,9 @@ class IndexController extends Controller {
         // $login = new \Common\Logic\LoginLogic("Login");
         //$login = D("Login","Logic");
         //$login->login();
-        import("QC");
+        require_once("/Common/Library/QQ/qqConnectAPI.php");
+        //import("QC");
+
         $QC = new QC();
         $this->display();
     }
