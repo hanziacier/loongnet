@@ -44,6 +44,8 @@ class QQController extends Controller
             }else{
                 var_dump($ret);
             }
+        }else{
+            echo $accessToken. "___" . $openId;
         }
 
     }
