@@ -6,12 +6,12 @@
  * Time: 上午9:55
  */
 
-namespace Api\Controller;
+namespace Home\Controller;
 
 use Think\Controller;
 use \Common\Logic\LoginLogic as LL;
 
-class QQController extends BaseController
+class QQController extends Controller
 {
 
     function __construct()
@@ -20,9 +20,11 @@ class QQController extends BaseController
         $this->enable_verify = 0;
     }
 
-    public function loginBack()
+    public function login()
     {
-        echo '<meta property="qc:admins" content="3474706167675477676654" />';
+        import("QC");
+        $QC = new \QC();
+        $QC->qq_login();
     }
 
 
