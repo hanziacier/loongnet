@@ -11,10 +11,11 @@ class IndexController extends Controller {
         // $login = new \Common\Logic\LoginLogic("Login");
         //$login = D("Login","Logic");
         //$login->login();
-        require_once(APP_PATH . "Common/Library/QQ/qqConnectAPI.php");
-        //import("QC");
-
+        import("QC");
         $QC = new \QC();
+        $ret = $QC->get_user_info();
+
+        var_dump($ret);
         $this->display();
     }
 }
