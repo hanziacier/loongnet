@@ -262,6 +262,7 @@ class QC extends Oauth
         if ($responseArr['ret'] == 0) {
             return $responseArr;
         } else {
+            var_dump("arg[0],argsList,baseUrl,method", $arg[0], $argsList, $baseUrl, $method);
             $this->error->showError($response->ret, $response->msg);
         }
 

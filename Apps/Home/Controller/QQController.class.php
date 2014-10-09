@@ -34,26 +34,15 @@ class QQController extends Controller
         $_GET['state'] = I('get.state');
         import("QC");
         $QC = new \QC();
+        echo "qq_callback:accessToken ";
+        $accessToken = $QC->qq_callback();
+        var_dump($accessToken);
+        echo "get_openid:openId ";
+        $openId = $QC->get_openid()
+        echo "get_user_info:";
         $ret = $QC->get_user_info();
+        var_dump($ret, $QC->);
 
-        if ($ret['ret'] == 0) {
-            echo "<meta charset='utf-8' />";
-            require_once("get_info.html");
-        } else {
-            echo "<meta charset='utf-8' />";
-            echo "获取失败，请开启调试查看原因";
-        }
-        echo "<hr />";
-        if ($accessToken = $QC->qq_callback() && $openId = $QC->get_openid()) {
-            $ret = $QC->get_info();
 
-            if ($ret['ret'] == 0) {
-                echo "<meta charset='utf-8' />";
-                require_once("get_info.html");
-            } else {
-                echo "<meta charset='utf-8' />";
-                echo "获取失败，请开启调试查看原因";
-            }
-        };
     }
 } 
