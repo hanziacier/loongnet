@@ -14,7 +14,7 @@ class IndexController extends Controller {
         require_once(APP_PATH . "Common/Library/QQ/qqConnectAPI.php");
         //import("QC");
 
-        $QC = new QC();
+        $QC = new \QC();
         $this->display();
     }
 }
