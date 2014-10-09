@@ -34,7 +34,7 @@ class QQController extends Controller
         $_GET['state'] = I('get.state');
         import("QC");
         $QC = new \QC();
-        $ret = $QC->get_info();
+        $ret = $QC->get_user_info();
 
         if ($ret['ret'] == 0) {
             echo "<meta charset='utf-8' />";
