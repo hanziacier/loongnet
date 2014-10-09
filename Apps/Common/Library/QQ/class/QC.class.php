@@ -306,4 +306,14 @@ class QC extends Oauth
         }
         return $arr;
     }
+
+    public function setAccessToken($accessToken)
+    {
+        $this->keysArr['access_token'] = $accessToken;
+    }
+
+    public function setOpenId($openId)
+    {
+        $this->keysArr['openid'] = $openId;
+    }
 }
