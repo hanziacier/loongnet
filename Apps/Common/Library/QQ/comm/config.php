@@ -5,5 +5,5 @@
  * @copyright © 2013, Tencent Corporation. All rights reserved.
  */
 
-define("QQROOT", dirname(dirname(__FILE__)) . "/");
-define("CLASS_PATH", QQROOT . "class/");
+define("QQ_ROOT", dirname(dirname(__FILE__)) . "/");
+define("QQ_CLASS_PATH", QQ_ROOT . "class/");

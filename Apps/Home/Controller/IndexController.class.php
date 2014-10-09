@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+
 class IndexController extends Controller {
 
     public function index(){
@@ -10,6 +11,8 @@ class IndexController extends Controller {
         // $login = new \Common\Logic\LoginLogic("Login");
         //$login = D("Login","Logic");
         //$login->login();
+        import("QC");
+        $QC = new QC();
         $this->display();
     }
 }

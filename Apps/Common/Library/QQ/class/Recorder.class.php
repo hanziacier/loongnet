@@ -5,7 +5,7 @@
  * @copyright © 2013, Tencent Corporation. All rights reserved.
  */
 
-require_once(CLASS_PATH . "ErrorCase.class.php");
+require_once(QQ_CLASS_PATH . "ErrorCase.class.php");
 
 class Recorder
 {
@@ -18,7 +18,7 @@ class Recorder
         $this->error = new ErrorCase();
 
         //-------读取配置文件
-        $incFileContents = file(QQROOT . "comm/inc.php");
+        $incFileContents = file(QQ_ROOT . "comm/inc.php");
         $incFileContents = $incFileContents[1];
         $this->inc = json_decode($incFileContents);
         if (empty($this->inc)) {
