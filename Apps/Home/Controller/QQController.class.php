@@ -23,7 +23,7 @@ class QQController extends Controller
     public function login()
     {
         import("QC");
-        $QC = new \QC();
+        $QC = new \Oauth();
         $QC->qq_login();
     }
 
@@ -33,13 +33,15 @@ class QQController extends Controller
         $_GET['code'] = I('get.code');
         $_GET['state'] = I('get.state');
         import("QC");
-        $QC = new \QC();
+        $Oauth = new \Oauth();
         echo "qq_callback:accessToken ";
-        $accessToken = $QC->qq_callback();
+        $accessToken = $Oauth->qq_callback();
         var_dump($accessToken);
         echo "get_openid:openId ";
-        $openId = $QC->get_openid();
+        $openId = $Oauth->get_openid();
+        var_dump($openId);
         echo "get_user_info:";
+        $QC = new \QC($accessToken, $openId);
         $ret = $QC->get_user_info();
         var_dump($ret);
 
