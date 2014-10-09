@@ -33,7 +33,7 @@ class QQController extends Controller
         import("QC");
         $QC = new \QC();
 
-        if ($accessToken = $QC->qq_callback() && $openId = $QC->get_openid()) {
+        if (($accessToken = $QC->qq_callback()) && ($openId = $QC->get_openid())) {
             $QC->setAccessToken($accessToken);
             $QC->setOpenId($openId);
             echo "accessToken openId is $accessToken --$openId <br />";
