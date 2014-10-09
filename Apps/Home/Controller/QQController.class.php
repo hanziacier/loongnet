@@ -10,6 +10,7 @@ namespace Home\Controller;
 
 use Think\Controller;
 use \Common\Logic\LoginLogic as LL;
+use \Common\Model\UserModel as UM;
 
 class QQController extends Controller
 {
@@ -36,17 +37,16 @@ class QQController extends Controller
 
         $Oauth = new \QC();
         echo "qq_callback:accessToken ";
-        $accessToken = $Oauth->qq_callback();
-        var_dump($accessToken);
-        echo "get_openid:openId ";
-        $openId = $Oauth->get_openid();
-        var_dump($openId);
-        echo "get_user_info:";
-        $Oauth->setAccessToken($accessToken);
-        $Oauth->setOpenId($openId);
-        $ret = $Oauth->get_user_info();
-        var_dump($ret);
-
+        if ($accessToken = $Oauth->qq_callback() && $openId = $Oauth->get_openid()) {
+            $Oauth->setAccessToken($accessToken);
+            $Oauth->setOpenId($openId);
+            $ret = $Oauth->get_user_info();
+            if ($ret['ret'] == 0) { //成功登录
+                LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ);
+                $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
+                var_dump($selfAccessToken);
+            }
+        }
 
     }
 } 

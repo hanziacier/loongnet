@@ -51,6 +51,11 @@ class UserModel extends Model
         array('add_time', 'getDateTime', Model::MODEL_INSERT, 'callback'), // 对update_time字段在更新的时候写入当前时间戳
     );
 
+    public static function getThirdType()
+    {
+        return array(self::TYPE_QQ, self::TYPE_SINA_WEIBO, self::TYPE_WEIXIN);
+    }
+
     protected function getDateTime()
     {
         return date("Y-m-d h:i:s");
@@ -70,5 +75,9 @@ class UserModel extends Model
     public function addUser($user)
     {
 
+    }
+
+    public function saveQQUser($pid, $name)
+    {
     }
 } 

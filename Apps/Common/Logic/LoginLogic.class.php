@@ -49,7 +49,6 @@ class LoginLogic extends Model {
             return false;
         }
         $data['password'] = md5($data['password']);
-        var_dump($data);
         if ($model->create($data)) {
             return $model->add();
         } else {
@@ -57,6 +56,34 @@ class LoginLogic extends Model {
             return false;
         }
 
+    }
+
+    public static function thirdUserSave($pid, $name, $type)
+    {
+        if (in_array($type, UM::getThirdType())) {
+            $model = new UM();
+            $where['pid'] = $pid;
+            $type['type'] = $type;
+            $user = $model->where($where)->find();
+            if ($user->id) {
+                $user->name = $name;
+                $user->password = md5($name);
+                $user->save();
+                return true;
+            } else {
+                $data = array(
+                    'pid' => $pid,
+                    'type' => $type,
+                    'name' => $name,
+                    'password' => md5($name),
+                    'status' => UM::STATUS_COMMON
+                );
+                if ($model->create($data)) {
+                    return $model->add();
+                }
+            }
+        }
+        return false;
     }
 
     public static function getLogicError(){
