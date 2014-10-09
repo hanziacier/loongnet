@@ -38,10 +38,10 @@ class QQController extends Controller
         $accessToken = $QC->qq_callback();
         var_dump($accessToken);
         echo "get_openid:openId ";
-        $openId = $QC->get_openid()
+        $openId = $QC->get_openid();
         echo "get_user_info:";
         $ret = $QC->get_user_info();
-        var_dump($ret, $QC->);
+        var_dump($ret);
 
 
     }
