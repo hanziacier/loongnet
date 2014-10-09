@@ -36,7 +36,7 @@ class QQController extends Controller
         if ($accessToken = $Oauth->qq_callback() && $openId = $Oauth->get_openid()) {
             $Oauth->setAccessToken($accessToken);
             $Oauth->setOpenId($openId);
-            $ret = $Oauth->get_user_info();
+            $ret = $Oauth->get_info();
             if ($ret['ret'] == 0) { //成功登录
                 LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ);
                 $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
