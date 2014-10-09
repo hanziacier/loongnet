@@ -31,15 +31,17 @@ class QQController extends Controller
     public function loginBack()
     {
         import("QC");
-        $Oauth = new \QC();
-        echo "qq_callback:accessToken ";
-        if ($accessToken = $Oauth->qq_callback() && $openId = $Oauth->get_openid()) {
-            $Oauth->setAccessToken($accessToken);
-            $Oauth->setOpenId($openId);
-            $ret = $Oauth->get_info();
+        $QC = new \QC();
+
+        if ($accessToken = $QC->qq_callback() && $openId = $QC->get_openid()) {
+            $QC->setAccessToken($accessToken);
+            $QC->setOpenId($openId);
+            echo "accessToken openId is $accessToken --$openId <br />";
+            $ret = $QC->get_info();
             if ($ret['ret'] == 0) { //成功登录
                 LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ);
                 $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
+                echo "<br />";
                 var_dump('$selfAccessToken:',$selfAccessToken);
             }else{
                 var_dump($ret);
