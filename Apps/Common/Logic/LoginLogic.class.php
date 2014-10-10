@@ -101,6 +101,10 @@ class LoginLogic extends Model {
         return self::crypt($user['id'] .self::SECURITYSTEP.
             $user['name'] .self::SECURITYSTEP.
             $user['mobile'] .self::SECURITYSTEP.
+            $user['pid'] . self::SECURITYSTEP .
+            $user['type'] . self::SECURITYSTEP .
+            $user['add_time'] . self::SECURITYSTEP .
+            $user['status'] . self::SECURITYSTEP .
             $expire,
             $securityKey);
     }
@@ -112,6 +116,10 @@ class LoginLogic extends Model {
         list($user['id'],
             $user['name'],
             $user['mobile'],
+            $user['pid'],
+            $user['type'],
+            $user['add_time'],
+            $user['status'],
             $user['expire']) = explode(self::SECURITYSTEP, $access_token);
         return $user;
     }

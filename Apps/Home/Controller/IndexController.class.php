@@ -1,10 +1,13 @@
 <?php
 namespace Home\Controller;
+
 use Think\Controller;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
 
-    public function index(){
+    public function index()
+    {
         //$user = new \Common\Model\UserModel("User");
         $user = D("User");
         //var_dump($user->getUser());
@@ -14,7 +17,6 @@ class IndexController extends Controller {
         //import("QC");
         //$QC = new \QC();
         //$ret = $QC->get_user_info();
-
         //var_dump($ret);
         $this->display();
     }
