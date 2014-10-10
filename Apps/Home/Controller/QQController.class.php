@@ -40,20 +40,21 @@ class QQController extends Controller
             $ret = $QC->get_user_info();
             if ($ret['ret'] == 0) { //成功登录
                 if (LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ)) {
-                    $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
+                    $selfAccessToken = LL::login($ret['nickname'], $ret['nickname'] . UM::TYPE_QQ);
                     if ($selfAccessToken) {
                         cookie('userdata', $selfAccessToken);
+                        $this->redirect('Index/index', array('from' => 'qq'));
                     } else {
-                        var_dump('LL::getLogicError', LL::getLogicError());
+                        $this->error('登录失败', 'Index/index');
                     }
                 } else {
-                    echo 'LL::thirdUserSave' . "(" . $openId . "," . $ret['nickname'] . "," . UM::TYPE_QQ . ")";
+                    $this->error('登录失败', 'Index/index');
                 }
             }else{
-                var_dump($ret);
+                $this->error('获取用户信息失败', 'Index/index');
             }
         }else{
-            echo $accessToken. "___" . $openId;
+            $this->error('授权失败', 'Index/index');
         }
 
     }

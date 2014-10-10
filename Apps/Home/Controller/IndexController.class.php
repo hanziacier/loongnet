@@ -11,11 +11,11 @@ class IndexController extends Controller {
         // $login = new \Common\Logic\LoginLogic("Login");
         //$login = D("Login","Logic");
         //$login->login();
-        import("QC");
-        $QC = new \QC();
-        $ret = $QC->get_user_info();
+        //import("QC");
+        //$QC = new \QC();
+        //$ret = $QC->get_user_info();
 
-        var_dump($ret);
+        //var_dump($ret);
         $this->display();
     }
 }

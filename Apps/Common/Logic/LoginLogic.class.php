@@ -67,7 +67,7 @@ class LoginLogic extends Model {
             $user = $model->where($where)->find();
             if ($user->id) {
                 $user->name = $name;
-                $user->password = md5($name);
+                $user->password = md5($name . $type);
                 $user->save();
                 return true;
             } else {
@@ -75,7 +75,7 @@ class LoginLogic extends Model {
                     'pid' => $pid,
                     'type' => $type,
                     'name' => $name,
-                    'password' => md5($name),
+                    'password' => md5($name . $type),
                     'status' => UM::STATUS_COMMON
                 );
                 if ($model->create($data)) {
