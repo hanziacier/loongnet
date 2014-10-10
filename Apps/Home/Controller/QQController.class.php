@@ -45,16 +45,16 @@ class QQController extends Controller
                         cookie('userdata', $selfAccessToken);
                         $this->redirect('/Home/Index/index', array('from' => 'qq'));
                     } else {
-                        $this->error('登录失败', '/HomeIndex/index');
+                        $this->error('登录失败', '/index.php/Home/Index/index');
                     }
                 } else {
-                    $this->error('保存QQ登陆信息失败', '/HomeIndex/index');
+                    $this->error('保存QQ登陆信息失败', '/index.php/Home/Index/index');
                 }
             }else{
-                $this->error('获取用户信息失败', '/HomeIndex/index');
+                $this->error('获取用户信息失败', '/index.php/Home/Index/index');
             }
         }else{
-            $this->error('授权失败', '/HomeIndex/index');
+            $this->error('授权失败', '/index.php/Home/Index/index');
         }
 
     }
