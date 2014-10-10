@@ -43,18 +43,18 @@ class QQController extends Controller
                     $selfAccessToken = LL::login($ret['nickname'], $ret['nickname'] . UM::TYPE_QQ);
                     if ($selfAccessToken) {
                         cookie('userdata', $selfAccessToken);
-                        $this->redirect('Index/index', array('from' => 'qq'));
+                        $this->redirect('/Home/Index/index', array('from' => 'qq'));
                     } else {
-                        $this->error('登录失败', 'Index/index');
+                        $this->error('登录失败', '/HomeIndex/index');
                     }
                 } else {
-                    $this->error('登录失败', 'Index/index');
+                    $this->error('保存QQ登陆信息失败', '/HomeIndex/index');
                 }
             }else{
-                $this->error('获取用户信息失败', 'Index/index');
+                $this->error('获取用户信息失败', '/HomeIndex/index');
             }
         }else{
-            $this->error('授权失败', 'Index/index');
+            $this->error('授权失败', '/HomeIndex/index');
         }
 
     }
