@@ -37,12 +37,18 @@ class QQController extends Controller
             $QC->setAccessToken($accessToken);
             $QC->setOpenId($openId);
             echo "accessToken openId is $accessToken --$openId <br />";
-            $ret = $QC->get_info();
+            $ret = $QC->get_user_info();
             if ($ret['ret'] == 0) { //成功登录
-                LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ);
-                $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
-                echo "<br />";
-                var_dump('$selfAccessToken:',$selfAccessToken);
+                if (LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ)) {
+                    $selfAccessToken = LL::login($ret['nickname'], $ret['nickname']);
+                    if ($selfAccessToken) {
+                        cookie('userdata', $selfAccessToken);
+                    } else {
+                        var_dump('LL::getLogicError', LL::getLogicError());
+                    }
+                } else {
+                    echo 'LL::thirdUserSave' . "(" . $openId . "," . $ret['nickname'] . "," . UM::TYPE_QQ . ")";
+                }
             }else{
                 var_dump($ret);
             }
