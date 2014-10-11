@@ -6,7 +6,7 @@ use \Common\Logic\LoginLogic as LL;
 
 class BaseController extends Controller
 {
-    const COOKIEUSERKEY = 'u_s_e_r_d_a_t_a';
+    const COOKIEUSERKEY = 'userdata';
 
     protected function setLogin($accessToken)
     {
