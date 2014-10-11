@@ -124,6 +124,7 @@ class LoginLogic extends Model {
             $user['add_time'],
             $user['status'],
             $user['expire']) = explode(self::SECURITYSTEP, $access_token);
+        if ($user['pid']) $user['name'] = str_replace($user['pid'], '', $user['name']);
         return $user;
     }
     /**
