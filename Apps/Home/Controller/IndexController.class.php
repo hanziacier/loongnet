@@ -3,7 +3,7 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 
     public function index()
@@ -18,6 +18,8 @@ class IndexController extends Controller
         //$QC = new \QC();
         //$ret = $QC->get_user_info();
         //var_dump($ret);
+        $user = $this->getUser();
+        echo $user['name'];
         $this->display();
     }
 }

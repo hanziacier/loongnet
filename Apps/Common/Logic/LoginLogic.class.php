@@ -36,8 +36,7 @@ class LoginLogic extends Model {
     public static function register($data)
     {
         if (empty($data['name']) ||
-            empty($data['password']) ||
-            empty($data['mobile'])
+            empty($data['password'])
         ) {
             self::$logicError = "注册数据不完整";
             return false;
@@ -66,7 +65,7 @@ class LoginLogic extends Model {
             $type['type'] = $type;
             $user = $model->where($where)->find();
             if ($user->id) {
-                $user->name = $name;
+                $user->name = $name . $pid;
                 $user->password = md5($name . $type);
                 $user->save();
                 return true;
@@ -74,7 +73,7 @@ class LoginLogic extends Model {
                 $data = array(
                     'pid' => $pid,
                     'type' => $type,
-                    'name' => $name,
+                    'name' => $name . $pid,
                     'password' => md5($name . $type),
                     'status' => UM::STATUS_COMMON
                 );

@@ -12,7 +12,7 @@ use Think\Controller;
 use \Common\Logic\LoginLogic as LL;
 use \Common\Model\UserModel as UM;
 
-class QQController extends Controller
+class QQController extends BaseController
 {
 
     function __construct()
@@ -40,9 +40,9 @@ class QQController extends Controller
             $ret = $QC->get_user_info();
             if ($ret['ret'] == 0) { //成功登录
                 if (LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ)) {
-                    $selfAccessToken = LL::login($ret['nickname'], $ret['nickname'] . UM::TYPE_QQ);
+                    $selfAccessToken = LL::login($ret['nickname'] . $openId, $ret['nickname'] . UM::TYPE_QQ);
                     if ($selfAccessToken) {
-                        cookie('userdata', $selfAccessToken);
+                        $this->setLogin($selfAccessToken);
                         $this->redirect('/Home/Index/index', array('from' => 'qq'));
                     } else {
                         $this->error('登录失败', '/index.php/Home/Index/index');

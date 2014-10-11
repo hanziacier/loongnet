@@ -11,7 +11,7 @@ namespace Home\Controller;
 use Think\Controller;
 use \Common\Logic\LoginLogic as LL;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
 
     function __construct()
