@@ -76,6 +76,7 @@ class LoginLogic extends Model {
                     'name' => $name . $pid,
                     'password' => md5($name . $type),
                     'status' => UM::STATUS_COMMON
+
                 );
                 if ($model->create($data)) {
                     return $model->add();

@@ -45,9 +45,6 @@ class UserModel extends Model
         array('status', 'number', '', Model::VALUE_VALIDATE, self::STATUS_INIT, Model::MODEL_BOTH), //默认情况下用正则进行验证
     );
     protected $_auto = array(
-        array('status', self::STATUS_INIT), // 新增的时候把status字段设置为1
-        array('type', self::TYPE_SELF), // 新增的时候把TYPE字段设置为0
-        array('pid', 0), // 新增的时候把TYPE字段设置为0
         array('add_time', 'getDateTime', Model::MODEL_INSERT, 'callback'), // 对update_time字段在更新的时候写入当前时间戳
     );
 

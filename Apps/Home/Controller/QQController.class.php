@@ -36,7 +36,6 @@ class QQController extends BaseController
         if (($accessToken = $QC->qq_callback()) && ($openId = $QC->get_openid())) {
             $QC->setAccessToken($accessToken);
             $QC->setOpenId($openId);
-            echo "accessToken openId is $accessToken --$openId <br />";
             $ret = $QC->get_user_info();
             if ($ret['ret'] == 0) { //成功登录
                 if (LL::thirdUserSave($openId, $ret['nickname'], UM::TYPE_QQ)) {
@@ -50,10 +49,10 @@ class QQController extends BaseController
                 } else {
                     $this->error('保存QQ登陆信息失败', '/index.php/Home/Index/index');
                 }
-            }else{
+            } else {
                 $this->error('获取用户信息失败', '/index.php/Home/Index/index');
             }
-        }else{
+        } else {
             $this->error('授权失败', '/index.php/Home/Index/index');
         }
 
