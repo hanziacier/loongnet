@@ -9,7 +9,6 @@
 namespace Home\Controller;
 
 use Think\Controller;
-use \Common\Logic\LoginLogic as LL;
 
 class UserController extends BaseController
 {
@@ -22,12 +21,18 @@ class UserController extends BaseController
 
     public function register()
     {
-        $data = array_merge(I("get."), I("post."));
+        $data = array_merge(I("post."));
 
         if ($id = LL::register($data)) {
             echo $id;
         } else {
             echo LL::getLogicError();
         }
+    }
+
+    public function index()
+    {
+        $user = $this->getUser();
+        echo $user['name'];
     }
 } 
