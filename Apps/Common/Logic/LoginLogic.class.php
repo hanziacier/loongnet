@@ -64,10 +64,13 @@ class LoginLogic extends Model {
             $where['pid'] = $pid;
             $type['type'] = $type;
             $user = $model->where($where)->find();
-            if ($user->id) {
-                $user->name = $name . $pid;
-                $user->password = md5($name . $type);
-                $user->save();
+            if ($user['id']) {
+                $data = array(
+                    'id' => $user['id'],
+                    'name' => $name . $pid,
+                    'password' => md5($name . $type)
+                );
+                $model->where('id=' . $user['id'])->save($data);
                 return true;
             } else {
                 $data = array(
