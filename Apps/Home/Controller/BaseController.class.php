@@ -17,7 +17,6 @@ class BaseController extends Controller
     {
         if ($accessToken = cookie(self::COOKIEUSERKEY)) {
             $user = LL::parseAccessToken($accessToken);
-
             return $user;
         }
         return false;
